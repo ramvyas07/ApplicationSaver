@@ -26,6 +26,9 @@
 <input type="submit" value="Submit" name="formSubmit">
 </form>
 <br>
+{% if applications|length < 1 %}
+<h5>There are no Applications YET!</h5>
+{% else %}
 <table>
     <tr>
         <th>Application Name</th>
@@ -47,5 +50,6 @@
     </tr>
     {% endfor %}
 </table>
+{% endif %}
 </div>
 {% endblock %}
