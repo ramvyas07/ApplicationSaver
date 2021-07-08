@@ -10,17 +10,17 @@
 <form action="/" method="POST">
 <label>
     Company Name: 
-    <input type="text" name='application_name' id='application_name'>
+    <input type="text" name='application_name' id='application_name' required>
 </label>
 <br>
 <label>
     Application Link: 
-    <input type="text" name='application_link' id='application_link'>
+    <input type="text" name='application_link' id='application_link' required>
 </label>
 <br>
 <label>
     status: 
-    <input type="text" name='application_status' id='application_status'>
+    <input type="text" name='application_status' id='application_status' required>
 </label>
 <br>
 <input type="submit" value="Submit" name="formSubmit">
@@ -41,7 +41,7 @@
         <td>{{ app.status }}</td>
         <td>{{ app.date_created.date() }}</td>
         <td>
-            <a href='#'>Update</a>
+            <a href='/update/{{app.id}}'>Update</a>
             <a href='/delete/{{app.id}}'>Delete</a>
         </td>
     </tr>

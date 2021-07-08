@@ -1,0 +1,31 @@
+{% extends 'base.html' %}
+
+{% block head %}
+<title>Home</title>
+{% endblock %}
+
+{% block body %}
+<h1>Update</h1>
+<div class="content">
+<form action="/update/{{app.id}}" method="POST">
+<label>
+    Company Name: 
+    <input type="text" name='application_name' id='application_name'  value='{{app.application_name}}'>
+</label>
+<br>
+<label>
+    Application Link: 
+    <input type="text" name='application_link' id='application_link' value='{{app.application_link}}'>
+</label>
+<br>
+<label>
+    status: 
+    <input type="text" name='application_status' id='application_status' value='{{app.status}}'>
+</label>
+<br>
+<input type="submit" value="Update" name="formUpdate">
+</form>
+<br>
+
+</div>
+{% endblock %}

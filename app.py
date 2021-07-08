@@ -48,5 +48,21 @@ def delete(id):
     except:
         return "There was an error in deletion of that application. Contact admin at @ramvyas_"
 
+@app.route('/update/<int:id>' , methods=['POST','GET'])
+def update(id):
+    app = ApplicationSaverModel.query.get_or_404(id)
+    if request.method == 'POST':
+        app.application_name = request.form['application_name']
+        app.application_link = request.form['application_link']
+        app.application_status = request.form['application_status']
+
+        try:
+            db.session.commit()
+            return redirect('/')
+        except:
+            return 'Error'
+    else:
+        return render_template('update.html', app = app)
+
 if __name__=='__main__':
     app.run(debug=True)
