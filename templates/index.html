@@ -5,7 +5,7 @@
 {% endblock %}
 
 {% block body %}
-<h1>Application Saver Template</h1>
+<h1>Application Saver</h1>
 <div class="content">
 <form action="/" method="POST">
 <label>
@@ -30,8 +30,8 @@
     <tr>
         <th>Application Name</th>
         <th>Application Link</th>
-        <th>Date Applied</th>
         <th>Status</th>
+        <th>Date Applied</th>
         <th>Change</th>
     </tr>
     {% for app in applications %}
@@ -42,7 +42,7 @@
         <td>{{ app.date_created.date() }}</td>
         <td>
             <a href='#'>Update</a>
-            <a href='#'>Delete</a>
+            <a href='/delete/{{app.id}}'>Delete</a>
         </td>
     </tr>
     {% endfor %}

@@ -38,5 +38,15 @@ def index():
         applications = ApplicationSaverModel.query.order_by(ApplicationSaverModel.date_created).all()
         return render_template('index.html' , applications=applications)
 
+@app.route('/delete/<int:id>')
+def delete(id):
+    delete_app = ApplicationSaverModel.query.get_or_404(id)
+    try:
+        db.session.delete(delete_app)
+        db.session.commit()
+        return redirect('/')
+    except:
+        return "There was an error in deletion of that application. Contact admin at @ramvyas_"
+
 if __name__=='__main__':
     app.run(debug=True)
