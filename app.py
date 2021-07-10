@@ -1,6 +1,9 @@
 from flask import Flask, render_template, url_for, request , redirect
 from flask_sqlalchemy import SQLAlchemy
 from datetime import datetime
+from careerjet_api import CareerjetAPIClient
+
+cj  =  CareerjetAPIClient("en_CA");
 
 from werkzeug.utils import redirect
 
@@ -63,6 +66,20 @@ def update(id):
             return 'Error'
     else:
         return render_template('update.html', app = app)
+
+@app.route('/api', methods=['POST','GET'])
+def api():
+    try:
+        result_json = cj.search({
+                            'location'    : 'torronto',
+                            'keywords'    : request.form['jobs'],
+                            'affid'       : '213e213hd12344552',
+                            'user_ip'     : '108.35.75.46',
+                            'url'         : 'http://127.0.0.1:5000/api?q='+request.form['jobs']+'&l=torronto',
+                            'user_agent'  : 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/91.0.4472.124 Safari/537.36'
+                        });
+    except:
+        return render_template('api.html')
 
 if __name__=='__main__':
     app.run(debug=True)
