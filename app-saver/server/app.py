@@ -1,9 +1,8 @@
 from flask import Flask, render_template, url_for, request , redirect
 from flask_sqlalchemy import SQLAlchemy
 from datetime import datetime
-from careerjet_api import CareerjetAPIClient
 
-cj  =  CareerjetAPIClient("en_CA");
+
 
 from werkzeug.utils import redirect
 
@@ -34,7 +33,8 @@ def index():
         try:
             db.session.add(new_entry)
             db.session.commit()
-            return redirect('/')
+            # return redirect('/')
+            return {"status":"200 OK"}
         except:
             return 'Error while Adding application'
     else:
